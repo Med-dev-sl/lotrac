@@ -23,7 +23,7 @@ const pool = mysql.createPool({
   port: Number(process.env.DB_PORT || 3306),
   user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || 'Mk@15590',
-  database: process.env.DB_DATABASE || 'lotrac',
+  database: process.env.DB_DATABASE || 'securetrack',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
@@ -85,6 +85,19 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`Security backend listening on http://localhost:${PORT}`);
-});
+const startServer = (port) => {
+  server.listen(port, () => {
+    console.log(`Security backend listening on http://localhost:${port}`);
+  });
+
+  server.on('error', (err) => {
+    if (err && err.code === 'EADDRINUSE') {
+      console.error(`Port ${port} is already in use. Stop the process using it or set a different PORT.`);
+      process.exit(1);
+    }
+    console.error('Server error:', err);
+    process.exit(1);
+  });
+};
+
+startServer(Number(PORT));
