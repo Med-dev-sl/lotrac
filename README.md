@@ -6,6 +6,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### Frontend and Security backend
+
+- Frontend app: install and run from the project root.
+- Security backend: use the `security/` folder and run `npm install` there.
+- Backend entrypoint: `security/server.js`.
+
 ### `npm start`
 
 Runs the app in the development mode.\

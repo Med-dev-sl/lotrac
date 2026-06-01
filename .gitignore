@@ -23,8 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # local security service artifacts
-Security/node_modules/
-Security/.env
+security/node_modules/
+security/.env
 
 # temporary clone used during recovery
 remote_temp_clone/
